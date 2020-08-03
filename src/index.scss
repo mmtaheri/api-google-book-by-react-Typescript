@@ -1,0 +1,151 @@
+@import './variable';
+@import './mixins.scss';
+
+*{box-sizing:border-box}
+body{display:flex;min-height:100vh;flex-direction:column;margin:0}
+.wrap{display:flex;flex:1;flex-direction:column;padding:1em}
+.article-box{flex:1}
+.container{width:100%;margin:auto;top: 7em;    margin-bottom: 8em;
+    position: relative;
+   @include mobile{
+   max-width:540px;
+   }
+   @include tablet{
+    max-width:720px;
+    }
+    @include laptop{
+        max-width:960px;
+        }
+    @include desktop{
+            max-width:1190px;
+    }
+}
+
+
+
+[type="button"],[type="submit"]{-webkit-appearance:button}
+:focus{outline:none}
+svg:not(:root){overflow:hidden}
+.header,.footer{background:#9acd32;height:4em;padding:1em;    position: fixed;
+    width: 100%;    z-index: 99;}
+    .header{    top: 0;}
+    .footer{bottom: 0;}
+.row{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin: 2em 0;
+    .book-not-found {
+        font-size: 2em;
+        text-align: center;
+        margin: 0 auto;
+        color: #e60000;
+    }
+}
+
+.wrap{
+    @include mobile{
+        flex-direction:column
+        }
+}
+
+.book-column{
+    position:relative;width:100%;padding-right:15px;padding-left:15px;
+    .book-card{background:#fff;padding:15px;
+        @include border(1px solid #e1e5f1)
+        ;text-align:center;border-top:3px solid #3ecfac;margin-bottom:1em;
+    
+.book-card-image {
+    height: 13em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img{width:140px;height: 11em;
+        @include border-radius(5px)
+        ;vertical-align:middle;border-style:none}
+}
+    }
+
+    @include mobile{
+        -ms-flex:0 0 100%;flex:0 0 100%;max-width:100%
+        }
+        @include tablet{
+           -ms-flex:0 0 50%;flex:0 0 50%;max-width:50%
+         }
+         @include laptop{
+            -ms-flex:0 0 33.3%;flex:0 0 33.3%;max-width:33.3%
+             }
+         @include desktop{
+           -ms-flex:0 0 25%;flex:0 0 25%;max-width:25%
+         }
+
+}
+
+.book-card-body{
+    .book-header{
+      
+            color: #636363;
+      
+        .book-.author{color:#138da0}
+        
+    }
+    .book-details {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: column;
+        .book-id-number{margin:12px 0;color:#848484}
+    }
+    .book-details-footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: row;
+        .book-badge{padding:.4em .5em;font-size:80%;line-height:1;border-radius:.35rem;   flex-basis: calc(49% - 10px);
+            flex-grow: 1;
+            margin-left: 5px;    margin-bottom: 5px;}
+.book-badge-blue{color:#fff;background-color:#17a2b8}
+.book-badge-green{color:#fff;background-color:#28a745}
+    }
+
+}
+
+
+.book-hight-text{height:2.4em;margin:8px 0;overflow: hidden;}
+
+
+.search-wrap {
+      padding: 2em 0;    width: 100%;   
+}
+.search-wrap.hide{ height: 71vh;    align-items: center;
+    display: flex;
+    flex-direction: column;}
+.search-wrap.find{    position: fixed;
+    z-index: 99;
+    right: 0;
+    top: 0em;
+   }
+.search-input-field{width:50%;position:relative;display:flex;margin:auto;
+    @include mobile{
+        width:90%;    top: 1em;
+        }
+    .btn-search{width:70px;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;position:absolute;left:0;height:100%;background:#eee;padding:0;cursor:pointer;display:flex;-ms-flex-pack:center;justify-content:center;align-items:center;border-top-left-radius:34px;border-bottom-left-radius:34px;border: 1px solid #b9b9b9;
+        svg{fill:#aaa;width:30px;height:30px;transition:all .2s ease-out,color .2s ease-out}
+    }
+    input{height:100%;width:100%;background:transparent;border: 1px solid #b9b9b9;
+    
+        background:#fff;display:block;width:100%;padding:10px 32px 10px 80px;font-size:18px;color:#666;border-radius:34px}
+}
+
+
+
+#spinner{visibility:hidden;width:80px;height:80px;display: none;    z-index: 999;
+    @include border(1px solid #f3f3f3);
+    border-top:3px solid #f25a41;
+    @include border-radius(100%)
+    ;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;animation:spin 1s infinite linear}
+@keyframes spin {
+from{transform:rotate(0deg)}
+to{transform:rotate(360deg)}
+}
+#spinner.show{visibility:visible;display: block;}
+
+
+
