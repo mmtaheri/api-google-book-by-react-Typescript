@@ -3,8 +3,29 @@ import BookList from "../BookList/bookList";
 import NotFound from "../NotFound/notFound";
 //import SearchBox from "../SearchBox/searchBox"
 
-class ApiSearch extends React.Component {
-  constructor(props) {
+type ObjBooks = {
+    imageLinks :any;
+    title:string;
+    author:string;
+    publisher:string;
+    pageCount:number;
+    language:string;
+    categories:string;
+}
+type MyState= {
+  searchKey: string,
+  items: Array<ObjBooks>,
+  isLoading: boolean,
+  searchInput: string,
+  isFind:string,
+  totalItem:number,
+  
+};
+
+
+class ApiSearch extends React.Component<{}, MyState> {
+
+  constructor(props:{}) {
     super(props);
     this.state = {
       searchKey: "",
@@ -13,13 +34,12 @@ class ApiSearch extends React.Component {
       searchInput: "",
       isFind:'hide',
       totalItem:1
-   
-    };
+    }
   
      this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
-  handleKeyPress = (e) =>{
+  handleKeyPress = (e:any) =>{
     this.setState({
       searchKey: e.target.value.replace(/ +/g, ""),
      });
@@ -40,7 +60,8 @@ class ApiSearch extends React.Component {
     }
     const data = await response.json();
 
-    if(data.totalItems > 0){
+    let countBook:number = data.totalItems;
+    if(countBook > 0){
       return data;
     }
   }
@@ -72,7 +93,7 @@ class ApiSearch extends React.Component {
           this.setState({
             items: [],
             isLoading:false,
-            totalItem:this.state.totalItems
+            //totalItem:this.state.totalItems
           });
         });
     }else{

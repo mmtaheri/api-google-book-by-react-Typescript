@@ -1,12 +1,12 @@
 import React from "react";
 import BookCard from "../BookCard/bookCard";
 
-const BookList = (props) => {
+const BookList = (props:any) => {
  
   return (
    <>
   
-      {props.itemsListProp.map((item, i) => {
+      {props.itemsListProp.map((item:any, i:number) => {
          //console.log(props.itemsListProp)
         let {
           title,

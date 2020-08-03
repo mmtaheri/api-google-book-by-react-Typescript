@@ -1,11 +1,11 @@
 import React from 'react';
 import './header.scss';
 
-const Header = () =>{
+const Header : React.FC= () =>{
 
     return(
         <header className="header">
-            <div>search book in api google</div>
+            <div>search book in api google By TypeScript</div>
         </header>
     )
 

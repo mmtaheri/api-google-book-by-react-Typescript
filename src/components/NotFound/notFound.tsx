@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const NotFound = () =>{
+const NotFound : React.FC= () =>{
 
     return(
         <div className="book-not-found">
@@ -12,4 +12,4 @@ const NotFound = () =>{
     
 }
 
-export default NotFound
+export default NotFound;
