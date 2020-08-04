@@ -17,7 +17,7 @@ type MyState= {
   items: Array<ObjBooks>,
   isLoading: boolean,
   searchInput: string,
-  isFind:string,
+  searchGoTop:string,
   totalItem:number,
   
 };
@@ -32,8 +32,8 @@ class ApiSearch extends React.Component<{}, MyState> {
       items: [],
       isLoading: false,
       searchInput: "",
-      isFind:'hide',
-      totalItem:1
+      searchGoTop:'hide',
+      totalItem: 1
     }
   
      this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -56,13 +56,15 @@ class ApiSearch extends React.Component<{}, MyState> {
       `https://www.googleapis.com/books/v1/volumes?q=${searchKey}`
     );
     if (!response.ok) {
-      throw new Error("Could load json.");
+      throw new Error("Could load json Error 400.");
     }
     const data = await response.json();
 
     let countBook:number = data.totalItems;
     if(countBook > 0){
       return data;
+    }else {
+      return ''
     }
   }
 
@@ -71,29 +73,34 @@ class ApiSearch extends React.Component<{}, MyState> {
     if (this.state.searchKey !== '' ){
       this.setState({
         isLoading:true,
-        
-      });
+      })
 
       await this.getDataBook()
         .then((data) => {
           let { items,totalItems } = data;
-                   this.setState({
-                     items: items,
-                     isFind:'find',
-                     isLoading:false,
-                     totalItem:totalItems
-                   });
-               
-        
-        
+          if (totalItems > 0 ){
+            console.log('data',totalItems )
+            this.setState({
+              totalItem:totalItems,
+              items: items,
+              searchGoTop:'find',
+              isLoading:false,
+            })
+          } else {
+            this.setState({
+              totalItem:0,
+              searchGoTop:'find',
+              isLoading:false,
+            })
+          }
+
         })
         .catch((error) => {
-          console.log("Error in response data");
-          console.log(error);
+         
+          console.log("Error in response data" ,error);
           this.setState({
             items: [],
             isLoading:false,
-            //totalItem:this.state.totalItems
           });
         });
     }else{
@@ -103,11 +110,12 @@ class ApiSearch extends React.Component<{}, MyState> {
 
 
   render() {
-    const {isFind,isLoading,totalItem} = this.state
+    const {searchGoTop,isLoading,totalItem} = this.state;
+    
     return (
       <div className="container">
           <div className="row">
-        <div className={`search-wrap ${isFind}`}>
+        <div className={`search-wrap ${searchGoTop}`}>
         <div className="search-input-field">
 
 <button className="btn-search" type="button"  onClick={this.searchBook} disabled={this.state.isLoading} >

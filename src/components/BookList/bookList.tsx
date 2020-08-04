@@ -5,7 +5,7 @@ const BookList = (props:any) => {
  
   return (
    <>
-  
+
       {props.itemsListProp.map((item:any, i:number) => {
          //console.log(props.itemsListProp)
         let {
@@ -19,6 +19,8 @@ const BookList = (props:any) => {
         } = item.volumeInfo;
 
         return (
+         
+         
           <BookCard
             key={i}
             title={title}
@@ -28,7 +30,9 @@ const BookList = (props:any) => {
             pageCount={pageCount}
             language={language}
             categories={categories}
-          />
+          /> 
+       
+       
         );
       })}
   

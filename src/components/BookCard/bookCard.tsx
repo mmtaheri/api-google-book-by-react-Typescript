@@ -11,14 +11,13 @@ interface Props{
 
 }
 const BookCard:React.FC<Props> = (props:Props) => {
-   //console.log(typeof(props.imageLinks))
     return (
       
       
                             <div  className="book-column">
                       <div className="book-card">
                         <div className="book-list-content">
-                            <div className="book-card-image"><img src={props.imageLinks === '' ? "https://bulma.io/images/placeholders/128x128.png"   : props.imageLinks.thumbnail} alt="" /> </div>
+                            <div className="book-card-image"><img src={props.imageLinks === undefined ? "https://bulma.io/images/placeholders/128x128.png"   : props.imageLinks.thumbnail} alt="" /> </div>
                             <div className="book-card-body">
                                 <div className="book-header">
                                     <h4 className="book-title book-hight-text">Title: {props.title}</h4>
